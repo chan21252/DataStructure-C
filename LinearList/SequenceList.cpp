@@ -59,13 +59,23 @@ bool SequenceList<T>::isEmpty()
 }
 
 template<class T>
-T SequenceList<T>::get(int i)
+T SequenceList<T>::get(int index)
 {
-	if (i < 0 || i > size - 1)
+	if (index < 0 || index > size - 1)
 	{
 		throw "下标越界";
 	}
-	return data[i];
+	return data[index];
+}
+
+template<class T>
+void SequenceList<T>::set(int index, T element)
+{
+	if (index < 0 || index > size - 1)
+	{
+		throw "下标越界";
+	}
+	data[index] = element;
 }
 
 template<class T>

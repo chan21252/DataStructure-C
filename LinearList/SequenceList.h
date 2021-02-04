@@ -31,7 +31,8 @@ public:
 	void destroy();
 	void clear();
 	bool isEmpty();
-	T get(int i);
+	T get(int index);
+	void set(int index, T element);
 	int indexOf(T element);
 	void insert(int index, T element);
 	void remove(int index);
