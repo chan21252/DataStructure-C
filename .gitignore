@@ -1,7 +1,7 @@
 # vs项目文件
 **/.vs
-**/*.vcxproj
-**/*.vcxproj.*
+#**/*.vcxproj
+#**/*.vcxproj.*
 
 # 编译输出目录
 **/Debug
