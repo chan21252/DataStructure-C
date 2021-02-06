@@ -26,14 +26,15 @@ public:
 	LinkedList();
 	LinkedList(T a[], int n);
 	~LinkedList();
+	bool ListEmpty();
+	void Clear();
 	int Length();
-	T Get(int i);
+	T Get(int i);	//获取的下标为i的元素
 	int Locate(T element);
-	void Insert(int i, T element);
+	Node<T>* LocateElement(T element);
+	void Insert(int index, T element);
 	T Delete(int i);
 	void printList();
 private:
 	Node<T>* head;	//单链表的头指针
-	int length;		//长度
 };
-

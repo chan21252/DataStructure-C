@@ -10,6 +10,7 @@
 #include <iostream>
 #include "pch.h"
 #include "../LinearList/SequenceList.cpp"
+#include "../LinearList/LinkedList.cpp"
 
 using namespace std;
 
@@ -30,6 +31,17 @@ TEST(case1, testSequenceList) {
 	EXPECT_TRUE(sq->get(0) == 2);
 	len = sq->length();
 	ASSERT_EQ(len, 5);
+}
+
+TEST(case2, testLinkedList) 
+{
+
+	LinkedList<int>* list = new LinkedList<int>();
+	list->Insert(0, 2);
+	list->Insert(1, 4);
+	list->Insert(2, 6);
+	list->Insert(3, 8);
+	list->printList();
 }
 
 int main(int argc, char* argv[])
