@@ -29,6 +29,7 @@ public:
 	void Insert(int i, T element);		//在第i个元素前插入节点
 	T Delete(int i);		//删除第i个节点
 	void printList();
+	CircleLinkedList<T> Connect(CircleLinkedList<T>* list);	//合并2个循环表
 private:
 	Node<T>* rear;			//尾指针，指向最后一个节点
 };

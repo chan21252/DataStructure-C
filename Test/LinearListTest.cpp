@@ -96,12 +96,30 @@ TEST(case3, testLinkedList)
  */
 TEST(case1, testCircleLinkedList)
 {
-	char arr[5] = { 'C', 'i', 'r', 'c', 'l' };
-	CircleLinkedList<char>* list = new CircleLinkedList<char>(arr, 5);
+	char arr[6] = { 'C', 'i', 'r', 'c', 'l', 'e'};
+	CircleLinkedList<char>* list = new CircleLinkedList<char>(arr, 6);
 	list->printList();
-	cout << "链表长度" << list->Length() << endl;
+	list->Insert(7, '=');
+	list->printList();
+	cout << "链表长度：" << list->Length() << endl;
+	cout << "e的位置：" << list->Locate('e') << endl;
+	list->Insert(1, '1');
+	list->Insert(8, '8');
+	list->printList();
 	list->Clear();
+	cout << "c的位置：" << list->Locate('c') << endl;
 	cout << "清空链表：链表长度" << list->Length() << endl;
+	list->Insert(1, 'E');
+	list->Insert(1, 'H');
+	list->Insert(3, 'L');
+	list->Insert(4, 'L');
+	list->Insert(5, 'O');
+	list->printList();
+	cout << "删除第" << 1 << "个元素：" << list->Delete(1) << endl;
+	list->printList();
+	CircleLinkedList<char>* list2 = new CircleLinkedList<char>(arr, 6);
+	list->Connect(list2);
+	list->printList();
 	list->~CircleLinkedList();
 }
 

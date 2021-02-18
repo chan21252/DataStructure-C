@@ -1,40 +1,6 @@
 #include "CircleLinkedList.h"
 
 template <class T>
-void CircleLinkedList<T>::printList()
-{
-	for (Node<T>* p = rear->next->next; p != rear->next; p = p->next)
-	{
-		cout << p->data << " ";
-	}
-	cout << endl;
-}
-
-template <class T>
-T CircleLinkedList<T>::Delete(int i)
-{
-	
-}
-
-template <class T>
-void CircleLinkedList<T>::Insert(int i, T element)
-{
-
-}
-
-template <class T>
-Node<T>* CircleLinkedList<T>::LocateElement(T element)
-{
-	return nullptr;
-}
-
-template <class T>
-int CircleLinkedList<T>::Locate(T element)
-{
-	return 0;
-}
-
-template <class T>
 CircleLinkedList<T>::CircleLinkedList()
 {
 	rear = new Node<T>();	//尾指针指向头节点
@@ -126,4 +92,115 @@ T CircleLinkedList<T>::Get(int i)
 	//数完了，没找到
 	if (count != i) throw "位置";
 	else return p->data;
+}
+
+
+template <class T>
+Node<T>* CircleLinkedList<T>::LocateElement(T element)
+{
+	for (Node<T>* p = rear->next->next; p != rear->next; p = p->next)
+	{
+		if (p->data == element)
+		{
+			return p;
+		}
+	}
+	return NULL;
+}
+
+
+template <class T>
+int CircleLinkedList<T>::Locate(T element)
+{
+	int count = 0;
+	for (Node<T>* p = rear->next->next; p != rear->next; p = p->next)
+	{
+		count++;
+		if (p->data == element)
+		{
+			return count;
+		}
+	}
+	return -1;
+}
+
+template <class T>
+void CircleLinkedList<T>::Insert(int i, T element)
+{
+	int count = 0;
+	Node<T>* p = rear->next;
+
+	//从头节点开始，找到第i-1个元素
+	while (p != rear && count < i - 1)
+	{
+		p = p->next;
+		count++;
+	}
+	
+	/*
+	for (p = rear->next; p != rear && count < i - 1;)
+	{
+		p = p->next
+		count++;
+	}*/
+
+	//i<1 || i超过长度+1
+	if (count != i - 1)
+	{
+		throw "位置";
+	}
+	Node<T>* s = new Node<T>();
+	s->data = element;
+	s->next = p->next;
+	p->next = s;
+
+	if (p == rear) rear = p->next;	//如果是在表尾添加，需要移动尾指针
+}
+
+template <class T>
+T CircleLinkedList<T>::Delete(int i)
+{
+	int count = 0;
+	Node<T>* p = rear->next;
+
+	while (p != rear && count < i - 1)
+	{
+		p = p->next;
+		count++;
+	}
+
+	//i<1 || i超过长度+1
+	if (count != i - 1)
+	{
+		throw "位置";
+	}
+
+	Node<T>* q = p->next;
+	T data = q->data;
+	p->next = q->next;
+	delete q;
+	return data;
+}
+
+template <class T>
+void CircleLinkedList<T>::printList()
+{
+	for (Node<T>* p = rear->next->next; p != rear->next; p = p->next)
+	{
+		cout << p->data << " ";
+	}
+	cout << endl;
+}
+
+template<class T>
+CircleLinkedList<T> CircleLinkedList<T>::Connect(CircleLinkedList<T>* list)
+{
+	Node<T>* head1 = this->rear->next;
+	Node<T>* head2 = list->rear->next;
+	this->rear->next = head2->next;		//L1的尾结点和L2的首元节点连接
+	delete head2;				//删除L2的头节点
+	list->rear->next = head1;	//L2的尾结点和L1的头节点连接
+	rear = list->rear;
+
+	return CircleLinkedList<T>();
 }
