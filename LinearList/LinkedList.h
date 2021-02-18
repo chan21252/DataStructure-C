@@ -8,16 +8,9 @@
  */
 #pragma once
 #include <iostream>
+#include "Node.h"
 
 using namespace std;
-
-//节点元素
-template <class T>
-struct Node
-{
-	T data;			//数据域
-	Node<T>* next;	//指针域
-};
 
 template <class T>
 class LinkedList

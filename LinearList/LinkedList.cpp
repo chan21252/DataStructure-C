@@ -21,8 +21,6 @@ LinkedList<T>::LinkedList(T a[], int n, bool isHeadInsert)
 	}
 }
 
-
-
 template <class T>
 LinkedList<T>::~LinkedList()
 {
@@ -91,10 +89,13 @@ T LinkedList<T>::Delete(int i)
 	{
 		throw "位置越界";
 	}
-	
 	Node<T>* q = p->next;
 	p->next = p->next->next;
+
+	T t = q->data;	//临时存储要删除的元素数据
 	delete q;
+
+	return t;
 }
 
 template <class T>
