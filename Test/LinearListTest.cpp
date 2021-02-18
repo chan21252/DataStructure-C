@@ -11,6 +11,7 @@
 #include "pch.h"
 #include "../LinearList/SequenceList.cpp"
 #include "../LinearList/LinkedList.cpp"
+#include "../LinearList/CircleLinkedList.cpp"
 
 using namespace std;
 
@@ -88,6 +89,20 @@ TEST(case3, testLinkedList)
 	ASSERT_EQ(list->Get(1), 'H');
 	ASSERT_EQ(list->Get(4), 'L');
 	ASSERT_EQ(list->Length(), 5);
+}
+
+/**
+ * 测试循环链表
+ */
+TEST(case1, testCircleLinkedList)
+{
+	char arr[5] = { 'C', 'i', 'r', 'c', 'l' };
+	CircleLinkedList<char>* list = new CircleLinkedList<char>(arr, 5);
+	list->printList();
+	cout << "链表长度" << list->Length() << endl;
+	list->Clear();
+	cout << "清空链表：链表长度" << list->Length() << endl;
+	list->~CircleLinkedList();
 }
 
 
