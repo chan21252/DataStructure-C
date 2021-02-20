@@ -12,6 +12,7 @@
 #include "../LinearList/SequenceList.cpp"
 #include "../LinearList/LinkedList.cpp"
 #include "../LinearList/CircleLinkedList.cpp"
+#include "../LinearList/DulLinkedList.cpp"
 
 using namespace std;
 
@@ -103,6 +104,7 @@ TEST(case1, testCircleLinkedList)
 	list->printList();
 	cout << "链表长度：" << list->Length() << endl;
 	cout << "e的位置：" << list->Locate('e') << endl;
+	cout << "获取第" << 6 << "个元素：" << list->Get(6) << endl;
 	list->Insert(1, '1');
 	list->Insert(8, '8');
 	list->printList();
@@ -124,6 +126,31 @@ TEST(case1, testCircleLinkedList)
 }
 
 
+/**
+ * 测试双向循环链表
+ */
+TEST(case1, testDulLinkedList)
+{
+	char arr[6] = { 'D', 'o', 'u', 'b', 'l', 'e' };
+	DulLinkedList<char>* list = new DulLinkedList<char>(arr, 6);
+	list->Traverse();
+	cout << "获取第" << 6 << "个元素：" << list->Get(6) << endl;
+	cout << "u的位置：" << list->locateElement('u') << endl;
+	cout << "链表长度" << list->Length() << endl;
+	list->Clear();
+	cout << "清空链表：链表长度" << list->Length() << endl;
+	list->Insert('A', 1);
+	list->Insert('B', 2);
+	list->Insert('C', 3);
+	list->Insert('E', 4);
+	list->Insert('D', 4);
+	list->Insert('=', 1);
+	list->Traverse();
+	cout << "删除第" << 6 << "个元素：" << list->Delete(6) << endl;
+	cout << "删除第" << 1 << "个元素：" << list->Delete(1) << endl;
+	list->Traverse();
+	list->~DulLinkedList();
+}
 
 int main(int argc, char* argv[])
 {

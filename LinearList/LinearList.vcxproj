@@ -140,12 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CircleLinkedList.cpp" />
+    <ClCompile Include="DulLinkedList.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SequenceList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleLinkedList.h" />
+    <ClInclude Include="DulLinkedList.h" />
+    <ClInclude Include="DulNode.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SequenceList.h" />
