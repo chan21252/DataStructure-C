@@ -79,18 +79,17 @@ int CircleLinkedList<T>::Length()
 template <class T>
 T CircleLinkedList<T>::Get(int i)
 {
-	int count = 0;
-
 	//从首元节点开始
 	//没有遍历完，并且还没有数到要找的元素，向后
+	int count = 1;
 	Node<T>* p;
 	for (p = rear->next->next; p != rear->next && count < i; p = p->next)
 	{
 		++count;
 	}
 
-	//数完了，没找到
-	if (count != i) throw "位置";
+	//数完了，没找到或者i<1
+	if (p == rear->next || count > i) throw "位置";
 	else return p->data;
 }
 
