@@ -37,7 +37,9 @@ public:
 	void insert(int index, T element);
 	void remove(int index);
 	void trasverse();
-
+	void connect(SequenceList<T>* L);
+	static SequenceList<T>* sortedMerge(SequenceList<T>* ListA, SequenceList<T>* ListB);		//有序合并
+	bool isSorted();
 private:
 	int size;	//顺序表元素个数
 	T *data;	//指针，指向元素数组

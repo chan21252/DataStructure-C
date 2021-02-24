@@ -28,6 +28,10 @@ public:
 	void Insert(T element, int i);
 	T Delete(int i);
 	void Traverse();
+	void Connect(DulLinkedList<T>* list);		//双向链表的合并
+	static DulLinkedList<T>* sortedMerge(DulLinkedList<T>* listA, 
+		DulLinkedList<T>* listB);	//有序合并
+	bool isSorted();
 private:
 	DulNode<T>* head;
 };

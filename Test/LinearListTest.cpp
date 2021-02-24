@@ -20,7 +20,7 @@ using namespace std;
  * 测试顺序表
  */
 TEST(case1, testSequenceList) {
-	int a[5] = { 1, 2, 3,4, 5 };
+	int a[5] = { 1, 2, 3, 4, 5 };
 
 	SequenceList<int>* sq = new SequenceList<int>(a, 5);
 	int len = sq->length();
@@ -150,6 +150,37 @@ TEST(case1, testDulLinkedList)
 	cout << "删除第" << 1 << "个元素：" << list->Delete(1) << endl;
 	list->Traverse();
 	list->~DulLinkedList();
+}
+/**
+ * 测试顺序表的合并
+ */
+TEST(case2_merge, testSequenceList) {
+	int a[5] = { 1, 3, 5, 7, 9 };
+	int b[5] = { 2, 4, 6, 8, 10 };
+	SequenceList<int>* listA = new SequenceList<int>(a, 5);
+	SequenceList<int>* listB = new SequenceList<int>(b, 5);
+
+	SequenceList<int>* listC = SequenceList<int>::sortedMerge(listA, listB);
+	listC->trasverse();
+
+	listA->connect(listB);
+	listA->trasverse();
+}
+
+/**
+ * 测试顺序表的合并
+ */
+TEST(case2_merge, testDulLinkedList) {
+	int a[5] = { 1, 3, 5, 7, 9 };
+	int b[5] = { 2, 4, 6, 8, 10 };
+	DulLinkedList<int>* listA = new DulLinkedList<int>(a, 5);
+	DulLinkedList<int>* listB = new DulLinkedList<int>(b, 5);
+
+	DulLinkedList<int>* listC = DulLinkedList<int>::sortedMerge(listA, listB);
+	listC->Traverse();
+
+	listA->Connect(listB);
+	listA->Traverse();
 }
 
 int main(int argc, char* argv[])

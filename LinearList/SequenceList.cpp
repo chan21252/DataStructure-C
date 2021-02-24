@@ -95,7 +95,7 @@ int SequenceList<T>::indexOf(T element)
 template<class T>
 void SequenceList<T>::insert(int index, T element)
 {
-	if (index < 0 || index > size - 1)
+	if (index < 0 || index > size)
 	{
 		throw "插入位置越界";
 	}
@@ -144,3 +144,92 @@ void SequenceList<T>::trasverse()
 	}
 	cout << endl;
 }
+
+template<class T>
+void SequenceList<T>::connect(SequenceList* L)
+{
+	int lengthB = L->length();
+
+	if (size + lengthB > MAX_SIZE)
+	{
+		throw "溢出";
+	}
+
+	for (int i = 0; i < lengthB; i++)
+	{
+		T element = L->get(i);
+		this->insert(size, element);
+	}
+}
+
+template<class T>
+SequenceList<T>* SequenceList<T>::sortedMerge(SequenceList<T>* ListA, SequenceList<T>* ListB)
+{
+	if (!(ListA->isSorted() && ListB->isSorted()))
+	{
+		throw "无序";
+	}
+
+	int lengthA = ListA->length();
+	int lengthB = ListB->length();
+	int lengthC = lengthA + lengthB;
+	if (lengthC > MAX_SIZE)
+	{
+		throw "长度溢出";
+	}
+
+	SequenceList<T>* ListC = new SequenceList<T>;
+	
+	int p1 = 0, p2 = 0;		//取元素的标记
+	int i = 0;			//新线性表插入的标记
+	while (p1 < lengthA && p2 < lengthB)
+	{
+		T e1 = ListA->get(p1);
+		T e2 = ListB->get(p2);
+		if (e1 <= e2)
+		{
+			ListC->insert(i, e1);
+			p1++;
+		}
+		else
+		{
+			ListC->insert(i, e2);
+			p2++;
+		}
+		i++;
+	}
+	
+	//表A元素取完了
+	if (p1 == lengthA)
+	{
+		for (int i = p2; i < lengthB; i++)
+		{
+			ListC->insert(ListC->size, ListB->get(i));
+		}
+	}
+
+	if (p2 == lengthB)
+	{
+		for (int i = p1; i < lengthA; i++)
+		{
+			ListC->insert(ListC->size, ListA->get(i));
+		}
+	}
+
+	return ListC;
+}
+
+template<class T>
+bool SequenceList<T>::isSorted()
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		if (data[i] > data[i + 1])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+

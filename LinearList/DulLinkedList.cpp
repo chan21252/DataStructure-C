@@ -166,3 +166,82 @@ void DulLinkedList<T>::Traverse()
 	cout << endl;
 }
 
+template<class T>
+void DulLinkedList<T>::Connect(DulLinkedList<T>* list)
+{
+	DulNode<T>* rear1 = this->head->prior;	//表1的尾节点
+	DulNode<T>* rear2 = list->head->prior;	//表2的尾节点
+
+	DulNode<T>* firstNode2 = list->head->next;	//表2的首元节点
+	rear1->next = firstNode2;			//表1尾节点的后继指向表2的首元节点
+	firstNode2->prior = rear1;			//表2首元节点的前驱指向表1的尾节点
+
+	rear2->next = this->head;			//表2尾节点的后继指向表1的头节点
+	this->head->prior = rear2;			//表1头节点的前驱指向表2的尾节点
+
+	delete list->head;
+}
+
+template<class T>
+DulLinkedList<T>* DulLinkedList<T>::sortedMerge(DulLinkedList<T>* listA, DulLinkedList<T>* listB)
+{
+	if (!(listA->isSorted() && listB->isSorted()))
+	{
+		throw "无序";
+	}
+
+	DulNode<T>* p1 = listA->head->next;
+	DulNode<T>* p2 = listB->head->next;
+	DulLinkedList<T>* listC = new DulLinkedList<T>;
+	int i = 1;
+	while (p1 != listA->head && p2 != listB->head)
+	{
+		if (p1->data <= p2->data)
+		{
+			listC->Insert(p1->data, i);
+			p1 = p1->next;
+		}
+		else 
+		{
+			listC->Insert(p2->data, i);
+			p2 = p2->next;
+		}
+		i++;
+	}
+
+	if (p1 == listA->head)
+	{
+		while (p2 != listB->head)
+		{
+			listC->Insert(p2->data, i++);
+			p2 = p2->next;
+		}
+	}
+
+	if (p2 == listB->head)
+	{
+		while (p1 != listA->head)
+		{
+			listC->Insert(p1->data, i++);
+			p1 = p1->next;
+		}
+	}
+	return listC;
+}
+
+template<class T>
+bool DulLinkedList<T>::isSorted()
+{	
+	DulNode<T>* p = head->next;
+
+	while (p != head->prior)
+	{
+		if (p->data > p->next->data)
+		{
+			return false;
+		}
+		p = p->next;
+	}
+	return true;
+}
+
