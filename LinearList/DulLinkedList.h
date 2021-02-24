@@ -31,6 +31,7 @@ public:
 	void Connect(DulLinkedList<T>* list);		//双向链表的合并
 	static DulLinkedList<T>* sortedMerge(DulLinkedList<T>* listA, 
 		DulLinkedList<T>* listB);	//有序合并
+	void sortedMerge(DulLinkedList<T>* list);	//有序合并，不占用新的空间
 	bool isSorted();
 private:
 	DulNode<T>* head;

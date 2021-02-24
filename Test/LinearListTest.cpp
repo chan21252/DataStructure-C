@@ -183,6 +183,19 @@ TEST(case2_merge, testDulLinkedList) {
 	listA->Traverse();
 }
 
+/**
+ * 测试顺序表的合并
+ */
+TEST(case2_merge2, testDulLinkedList) {
+	int a[5] = { 2, 5, 12, 13, 16 };
+	int b[5] = { 6, 14, 17, 28, 30 };
+	DulLinkedList<int>* listA = new DulLinkedList<int>(a, 5);
+	DulLinkedList<int>* listB = new DulLinkedList<int>(b, 5);
+
+	listA->sortedMerge(listB);
+	listA->Traverse();
+}
+
 int main(int argc, char* argv[])
 {
 	testing::InitGoogleTest(&argc, argv);

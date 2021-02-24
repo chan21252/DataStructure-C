@@ -230,6 +230,49 @@ DulLinkedList<T>* DulLinkedList<T>::sortedMerge(DulLinkedList<T>* listA, DulLink
 }
 
 template<class T>
+void DulLinkedList<T>::sortedMerge(DulLinkedList<T>* list)
+{
+	if (!(this->isSorted() && list->isSorted()))
+	{
+		throw "无序";
+	}
+
+	DulNode<T>* pa = head->next;
+	DulNode<T>* pb = list->head->next;
+	DulNode<T>* pc = head;
+
+	while (pa != head && pb != head) {
+		if (pa->data <= pb->data)
+		{
+			pc->next = pa;
+			pa->prior = pc;
+			pc = pa;
+			pa = pa->next;
+		}
+		else 
+		{
+			pc->next = pb;
+			pb->prior = pc;
+			pc = pb;
+			pb = pb->next;
+		}
+	}
+
+	pc->next = pa != head ? pa : pb;
+	if (pa != head)
+	{
+		pa->prior = pc;
+	}
+	if (pb != head) 
+	{
+		pb->prior = pc;
+		// pc的头节点在a上，表b的表尾和表a的头节点连接
+		list->head->prior->next = head;
+		head->prior = list->head->prior;
+	}
+}
+
+template<class T>
 bool DulLinkedList<T>::isSorted()
 {	
 	DulNode<T>* p = head->next;
