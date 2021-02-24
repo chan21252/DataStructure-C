@@ -36,13 +36,17 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinearListTest.cpp" />
+    <ClCompile Include="LinearListTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StackTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -50,6 +54,9 @@
   <ItemGroup>
     <ProjectReference Include="..\LinearList\LinearList.vcxproj">
       <Project>{7bd4c060-0100-40d3-96c4-74480d067ec3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Stack\Stack.vcxproj">
+      <Project>{8632f2f7-f7f7-4622-8425-86ae8663ba45}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
