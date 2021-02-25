@@ -71,7 +71,7 @@ T SequenceStack<T>::Pop()
 template<class T>
 void SequenceStack<T>::Traverse()
 {
-    for (T* p = base; p != top; p++)
+    for (T* p = top; p != base; --p)
     {
         cout << *p << " ";
     }
