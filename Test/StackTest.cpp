@@ -12,6 +12,7 @@
 #include "../Stack/SequenceStack.cpp"
 #include "../Stack/LinkedStack.cpp"
 #include "../Stack/CirQueue.cpp"
+#include "../Stack/LinkedQueue.cpp"
 
 using namespace std;
 
@@ -110,6 +111,40 @@ TEST(case2, testCirQueue) {
 	queue->Traverse();
 	cout << "队列的长度：" << queue->Length() << endl;
 	cout << endl;
+}
+
+/**
+ * 测试链式队列
+ */
+TEST(case1, testLinkedQueue) {
+	LinkedQueue<char>* queue = new LinkedQueue<char>;
+	queue->EnQueue('A');
+	queue->EnQueue('B');
+	queue->EnQueue('C');
+	queue->EnQueue('D');
+	queue->EnQueue('E');
+	queue->Traverse();
+
+	int length = queue->Length();
+	cout << "队列的长度：" << length << endl;
+	cout << "出队的顺序：" << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		cout << queue->DeQueue() << " ";
+	}
+	queue->Traverse();
+	queue->EnQueue('F');
+	queue->EnQueue('G');
+
+	queue->Traverse();
+	cout << "队列的长度：" << queue->Length() << endl;
+	queue->Clear();
+	cout << "队列的长度：" << queue->Length() << endl;
+	queue->EnQueue('x');
+	queue->EnQueue('y');
+	queue->EnQueue('z');
+	queue->Traverse();
+	cout << "队列的长度：" << queue->Length() << endl;
 }
 
 int main(int argc, char* argv[])
