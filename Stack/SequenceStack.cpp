@@ -20,7 +20,7 @@ bool SequenceStack<T>::Empty()
 template<class T>
 int SequenceStack<T>::Length()
 {
-    return top - base;
+    return (int) (top - base);
 }
 
 template<class T>
